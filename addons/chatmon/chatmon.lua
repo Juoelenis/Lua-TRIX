@@ -1,6 +1,6 @@
 _addon = {}
 _addon.name = 'chatmon'
-_addon.version = '1.0.0'
+_addon.version = '1.0.1'
 _addon.author = 'WindowerDevTeam'
 _addon.commands = {'chatmon'}
 
@@ -63,7 +63,7 @@ local function check_triggers(from, text)
                                  .. player_name .. "?|*<"
                                  .. player_name .. ">*"
         end
-        if trigger.from[from] and not trigger.notFrom[from] and windower.wc_match(text, trigger.match) and not windower.wc_match(text, trigger.notMatch) then
+        if (trigger.from['all'] or trigger.from[from]) and not trigger.notFrom[from] and windower.wc_match(text, trigger.match) and not windower.wc_match(text, trigger.notMatch) then
             play_sound(trigger.sound)
             return
         end

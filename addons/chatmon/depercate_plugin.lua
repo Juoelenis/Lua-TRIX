@@ -2,7 +2,6 @@
 if not windower.file_exists(windower.windower_path .. 'plugins\\ChatMon.dll') then
     return false
 end
-windower.send_command('unload chatmon')
 
 local function read_all_lines(file_name)
     local f = assert(io.open(file_name, "r"))
@@ -36,8 +35,8 @@ if text ~= '' then
     text = string.gsub(text, '<settings', 'settings = {')
     text = string.gsub(text, '<%!%-%-[^\n]+%-%->%s*', '')
     text = string.gsub(text, '<trigger', '{')
-    text = string.gsub(text, '/>', '},')
     text = string.gsub(text, '</ChatMon>', '}')
+    text = string.gsub(text, '/?>', '},')
 
     local sounds = {
         ['tell'] = 'IncomingTell.wav',
@@ -101,9 +100,10 @@ if text ~= '' then
     global:write(trigger_text)
     global:close()
 
+    local settings = {}
     local truthy_set = S{'true', 't', 'yes', 'y', 'on', 'o'}
-    chatmon_plugin_xml.settings.DisableOnFocus = truthy_set:contains(string.lower(chatmon_plugin_xml.settings.DisableOnFocus)) ~= nil
-    chatmon_plugin_xml.settings.SoundInterval = tonumber(chatmon_plugin_xml.settings.SoundInterval)
+    settings.DisableOnFocus = not truthy_set:contains(string.lower(chatmon_plugin_xml.settings.DisableOnFocus))
+    settings.SoundInterval = tonumber(chatmon_plugin_xml.settings.SoundInterval)
 
     coroutine.schedule(function()
         windower.create_dir(windower.windower_path .. 'plugins\\depercated')
@@ -111,5 +111,5 @@ if text ~= '' then
         os.rename(windower.windower_path .. 'plugins\\ChatMon.dll', windower.windower_path .. 'plugins\\depercated\\ChatMon.dll')
     end, 0)
 
-    return chatmon_plugin_xml.settings
+    return settings
 end
