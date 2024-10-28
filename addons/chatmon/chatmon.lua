@@ -1,6 +1,6 @@
 _addon = {}
 _addon.name = 'chatmon'
-_addon.version = '1.0.0'
+_addon.version = '1.0.1'
 _addon.author = 'WindowerDevTeam'
 _addon.commands = {'chatmon'}
 
