@@ -102,7 +102,7 @@ if text ~= '' then
     global:close()
 
     local truthy_set = S{'true', 't', 'yes', 'y', 'on', 'o'}
-    chatmon_plugin_xml.settings.DisableOnFocus = truthy_set:contains(string.lower(chatmon_plugin_xml.settings.DisableOnFocus)) ~= nil
+    chatmon_plugin_xml.settings.DisableOnFocus = not truthy_set:contains(string.lower(chatmon_plugin_xml.settings.DisableOnFocus)) ~= nil
     chatmon_plugin_xml.settings.SoundInterval = tonumber(chatmon_plugin_xml.settings.SoundInterval)
 
     coroutine.schedule(function()
