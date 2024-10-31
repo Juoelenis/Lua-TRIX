@@ -1,6 +1,6 @@
 _addon = {}
 _addon.name = 'chatmon'
-_addon.version = '1.0.3'
+_addon.version = '1.0.4'
 _addon.author = 'WindowerDevTeam'
 _addon.commands = {'chatmon'}
 
@@ -74,6 +74,11 @@ local function chat_handler(message, _, mode)
     check_triggers(chat_res[mode].name, message)
 end
 windower.register_event('chat message', chat_handler)
+
+local function incoming_text_handler(original)
+    check_triggers('all', original)
+end
+windower.register_event('incoming text', incoming_text_handler)
 
 local function examine_handler(name)
     check_triggers('examine', name)
