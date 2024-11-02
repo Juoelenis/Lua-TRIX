@@ -1,4 +1,3 @@
-
 if not windower.file_exists(windower.windower_path .. 'plugins\\ChatMon.dll') then
     return false
 end
@@ -29,11 +28,10 @@ local text = read_all_lines(file)
 
 if text ~= '' then
 
-    text = string.gsub(text, '%<%?xml version%="1%.0" %?%>%s*', '')
-    text = string.gsub(text, '<ChatMon>', 'return {')
-    text = string.gsub(text, '(="[^"]+")', '%1,')
+    text = string.gsub(text, '.*<ChatMon>', 'return {')
+    text = string.gsub(text, '(=".-")', '%1,')
     text = string.gsub(text, '<settings', 'settings = {')
-    text = string.gsub(text, '<%!%-%-[^\n]+%-%->%s*', '')
+    text = string.gsub(text, '<%!%-%-.-%-%->%s*', '')
     text = string.gsub(text, '<trigger', '{')
     text = string.gsub(text, '</ChatMon>', '}')
     text = string.gsub(text, '/?>', '},')
