@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" ?>
+<ChatMon>
+   <settings
+       DisableOnFocus="false"
+       TellSound="Tell"
+       ExamineSound=""
+	   EmoteSound="Emote"
+       TalkSound="Talk"
+       InviteSound="Invite"
+       SoundInterval="0"
+       DisableFilters="true"
+   />
+   <!-- Add Triggers below. The line below is a comment for an example -->
+   <!-- Valid From entries: Say, Shout, Party, Linkshell, Tell, Invite, Emote, Examine, All -->
+   <!-- match should not be used for Emote. Examine matches to Examiners name, Invite matches to Inviters name. -->
+   <!-- <trigger match="*YourNickNameHere*" notmatch="*SomecommonMatch*" notfrom="Tell" from="Party|Linkshell" sound="Talk" /> -->
+   <trigger match="*[2]&lt;*Me*&gt;*" from="ALL" sound="" />
+   <trigger match="*me*" from="Linkshell" sound="Talk" />
+   <trigger match="*[2]*me*" from="ALL" sound="Talk" />
+   <trigger match="*me*" from="Party" sound="Talk" />
+   <trigger match="*" from="Party" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\MetallicCLICK.wav" />
+   <trigger match="*" from="Linkshell" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\MetallicCLICK.wav" />
+   <trigger match="*[2]&lt;*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\MetallicCLICK.wav" />
+   <trigger match="*A mog tablet has been discovered in*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\MogTablet.wav" />
+   <trigger match="*Airship ===*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\Airship.wav" />
+   <trigger match="*A Campaign battle has begun.*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\Campaign.wav" />
+   <trigger match="*has begun their relentless attack on*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\Campaign.wav" />
+   <trigger match="*stalwart defense of*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\Campaign.wav" />
+   <trigger match="*charmed*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\alarm8.wav" />
+   <trigger match="*embolden*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\mixkit-classic-short-alarm-993.wav" />
+   <trigger match="*stopped augmenting*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\alarm8.wav" />
+   <trigger match="*have breached the Balrahn Defense Line*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\BesiegedIsStarting.wav" />
+   <trigger match="*Word has been received of a*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\BesiegedIsAdvancing.wav" />
+   <!--
+   
+   <trigger match="*Word has been received of a*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\BesiegedIsAdvancing.wav" />
+   <trigger match="*Weather:*Sandstorms*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\EarthWeather.wav" />
+   <trigger match="*=== Area: Walk of Echoes [P] ===*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\Lilith.wav" />
+   <trigger match="*woodworking*" from="ALL" sound="C:\Program Files (x86)\Windower4\plugins\ChatMon\Woodworking.wav" />
+   <trigger match="*Weather:*Thunderstorms*" from="ALL" sound="C:\Users\Default.Default-PC\Desktop\Windower\plugins\ChatMon\Thunder.wav" />
+   <trigger match="*Weather:*Gales*" from="ALL" sound="C:\Users\Default.Default-PC\Desktop\Windower\plugins\ChatMon\Gales.wav" />    
+   <trigger match="*Weather:*Dark*" from="ALL" sound="C:\Users\Default.Default-PC\Desktop\Windower\plugins\ChatMon\DarkWeather.wav" />
+   <trigger match="*Weather:*Fog*" from="ALL" sound="C:\Users\Default.Default-PC\Desktop\Windower\plugins\ChatMon\Fog.wav" />
+   <trigger match="*Weather:*Heat*" from="ALL" sound="C:\Users\Default.Default-PC\Desktop\Windower\plugins\ChatMon\Heat.wav" />
+   <trigger match="*Weather:*Rain*" from="ALL" sound="C:\Users\Default.Default-PC\Desktop\Windower\plugins\ChatMon\Rain.wav" />
+   -->
+</ChatMon>
