@@ -8,8 +8,10 @@ require('sets')
 require('strings')
 local config = require('config')
 local chat_res = require('resources').chat
-local plugin_settings = require('depercate_plugin')
+local plugin_settings = require('deprecate_plugin')
 local get_triggers = require('get_triggers')
+
+windower.create_dir(windower.addon_path .. '/data/sounds/')
 
 local defaults = {
     DisableOnFocus=false,
@@ -33,37 +35,46 @@ windower.register_event('load', on_load)
 
 local last_sound = 0
 local function play_sound(sound)
-    if (os.time() - last_sound >= settings.SoundInterval) then
+    if os.time() - last_sound >= settings.SoundInterval then
         last_sound = os.time();
-        if(windower.file_exists(windower.addon_path .. "/data/sounds/" .. sound)) then
-            windower.play_sound(windower.addon_path .. "/data/sounds/" .. sound)
-        elseif (windower.file_exists(sound)) then
+        if windower.file_exists(windower.addon_path .. '/sounds/' .. sound) then
+            windower.play_sound(windower.addon_path .. '/sounds/' .. sound)
+        elseif windower.file_exists(windower.addon_path .. '/data/sounds/' .. sound) then
+            windower.play_sound(windower.addon_path .. '/data/sounds/' .. sound)
+        elseif windower.file_exists(sound) then
             windower.play_sound(sound)
         end
     end
 end
 
+local function get_match(match)
+    if match ~= '<name>' then
+        return match
+    end
+
+    -- this is done to have parity with the old plugin.
+    local player_name = windower.ffxi.get_player().name:lower()
+    return '* ' .. player_name .. '|'
+                .. player_name .. ' *|*\''
+                .. player_name .. '\'*|*('
+                .. player_name .. ')*|'
+                .. player_name .. '|* '
+                .. player_name .. ' *|* '
+                .. player_name .. '? *|* '
+                .. player_name .. '?|'
+                .. player_name .. '? *|'
+                .. player_name .. '?|*<'
+                .. player_name .. '>*'
+end
+
 local function check_triggers(from, text)
-    if (windower.has_focus() and settings.DisableOnFocus) then
+    if windower.has_focus() and settings.DisableOnFocus then
         return
     end
 
     for _, trigger in ipairs(triggers) do
-        if trigger.match == '<name>' then -- this is done to have parity with the old plugin.
-            local player_name = windower.ffxi.get_player().name:lower()
-            trigger.match = "* " .. player_name .. "|"
-                                 .. player_name .. " *|*\""
-                                 .. player_name .. "\"*|*("
-                                 .. player_name .. ")*|"
-                                 .. player_name .. "|* "
-                                 .. player_name .. " *|* "
-                                 .. player_name .. "? *|* "
-                                 .. player_name .. "?|"
-                                 .. player_name .. "? *|"
-                                 .. player_name .. "?|*<"
-                                 .. player_name .. ">*"
-        end
-        if (trigger.from:contains('all') or trigger.from:contains(from)) and not trigger.notFrom:contains(from) and windower.wc_match(text, trigger.match) and not windower.wc_match(text, trigger.notMatch) then
+        local match = get_match(trigger.match)
+        if (trigger.from:contains('all') or trigger.from:contains(from)) and not trigger.notFrom:contains(from) and windower.wc_match(text, match) and not windower.wc_match(text, trigger.notMatch) then
             play_sound(trigger.sound)
             return
         end
