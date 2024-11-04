@@ -111,10 +111,10 @@ local truthy_set = S{'true', 't', 'yes', 'y', 'on', 'o'}
 settings.DisableOnFocus = not truthy_set:contains(string.lower(chatmon_plugin_xml.settings.DisableOnFocus))
 settings.SoundInterval = tonumber(chatmon_plugin_xml.settings.SoundInterval)
 
--- coroutine.schedule(function()
---     windower.create_dir(windower.windower_path .. 'plugins\\deprecated')
---     os.rename(windower.windower_path .. 'plugins\\ChatMon.xml', windower.windower_path .. 'plugins\\depercated\\ChatMon.xml')
---     os.rename(windower.windower_path .. 'plugins\\ChatMon.dll', windower.windower_path .. 'plugins\\depercated\\ChatMon.dll')
--- end, 0)
+coroutine.schedule(function()
+    windower.create_dir(windower.windower_path .. 'plugins\\deprecated')
+    os.rename(windower.windower_path .. 'plugins\\ChatMon.xml', windower.windower_path .. 'plugins\\depercated\\ChatMon.xml')
+    os.rename(windower.windower_path .. 'plugins\\ChatMon.dll', windower.windower_path .. 'plugins\\depercated\\ChatMon.dll')
+end, 0)
 
 return settings
