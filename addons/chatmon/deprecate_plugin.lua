@@ -66,6 +66,7 @@ local converted = text
     :gsub('</ChatMon>', '}')
     :gsub('/?>', '},')
     :gsub('&(%w+);', entities)
+    :gsub('\\', '\\\\\\\\')
 
 local chatmon_plugin_xml = loadstring(converted)()
 
