@@ -114,8 +114,8 @@ settings.SoundInterval = tonumber(chatmon_plugin_xml.settings.SoundInterval)
 
 coroutine.schedule(function()
     windower.create_dir(windower.windower_path .. 'plugins\\deprecated')
-    os.rename(windower.windower_path .. 'plugins\\ChatMon.xml', windower.windower_path .. 'plugins\\depercated\\ChatMon.xml')
-    os.rename(windower.windower_path .. 'plugins\\ChatMon.dll', windower.windower_path .. 'plugins\\depercated\\ChatMon.dll')
+    os.rename(windower.windower_path .. 'plugins\\ChatMon.xml', windower.windower_path .. 'plugins\\deprecated\\ChatMon.xml')
+    os.rename(windower.windower_path .. 'plugins\\ChatMon.dll', windower.windower_path .. 'plugins\\deprecated\\ChatMon.dll')
 end, 0)
 
 return settings
